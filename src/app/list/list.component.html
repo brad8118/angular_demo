@@ -1,6 +1,6 @@
 <h1>Breweries</h1>
 
-<mat-form-field>
+<!-- <mat-form-field>
   <mat-select placeholder="Columns" [formControl]="toppings" [(value)]="selectedToppings" multiple>
     <mat-select-trigger><span>Columns</span></mat-select-trigger>
     <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
@@ -8,20 +8,25 @@
 </mat-form-field>
 <p>
   {{selectedToppings | json}}
-</p>
+</p> -->
 
 <!-- columns select -->
-<!-- <mat-form-field>
-  <mat-select placeholder="Columns" [formControl]="columns" [(value)]="selectedColumns" multiple>
+<mat-form-field>
+  <mat-select placeholder="Columns" [formControl]="columns" [(ngModel)]="displayedColumns"
+   [compareWith]="compareWithFunc" multiple>
     <mat-select-trigger><span>Columns</span></mat-select-trigger>
     <mat-option *ngFor="let column of columnList" [value]="column">{{column}}</mat-option>
   </mat-select>
-</mat-form-field> -->
+</mat-form-field>
+
+<p>
+  {{displayedColumns | json}}
+</p> 
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- Checkbox Column -->
-  <!-- <ng-container matColumnDef="select">
+  <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
         [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
@@ -32,7 +37,7 @@
         [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
       </mat-checkbox>
     </td>
-  </ng-container> -->
+  </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">

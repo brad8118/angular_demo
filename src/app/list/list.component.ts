@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  // displayedColumns: string[] = [ 'position', 'name', 'weight', 'symbol'];
+ 
   displayedColumns: string[];
   columns = new FormControl();
   columnList: string[];
@@ -30,8 +30,8 @@ export class ListComponent implements OnInit {
   selection = new SelectionModel<BreweryElement>(true, []);
 
 
-  toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  // toppings = new FormControl();
+  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -48,13 +48,19 @@ export class ListComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  // checkboxLabel(row?: Brewery): string {
-  //   if (!row) {
-  //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  //   }
-  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  // }
+  checkboxLabel(row?: BreweryElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
 
+  compareWithFunc(a, b) {
+    console.log("compare", a,b)
+    return a === b;
+  }
+
+  
 
   ngOnInit() {
     // this._http.getBeer().subscribe(data => {
@@ -68,7 +74,11 @@ export class ListComponent implements OnInit {
     this.brews = this._http.getBeer();
     console.log(this.brews);
 
+    
     this.columnList = this._http.getColumnList();
+    this.columnList.splice(0, 1, "select");
+    // this.columnList = this.displayedColumns.slice();
+    // this.displayedColumns = this._http.getColumnList();
     this.displayedColumns = this.columnList.slice();
   }
 }
