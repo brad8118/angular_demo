@@ -3,19 +3,12 @@ import { FormControl, NgControl } from '@angular/forms';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { HttpService } from '../http.service';
-import { AutocompleteFilterComponent} from '../components/autocomplete-filter/autocomplete-filter.component'
-
 
 @Component({
   selector: 'app-list',
   // selector: 'app-root',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
-})
-
-@NgModule({
-  imports:[AutocompleteFilterComponent],
-  exports:[AutocompleteFilterComponent]
 })
 
 export class ListComponent implements OnInit {
@@ -61,8 +54,9 @@ export class ListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  /** Coulnms function to check if list changes */
   compareWithFunc(a, b) {
-    console.log("compare", a,b)
+    // console.log("compare", a,b)
     return a === b;
   }
 
