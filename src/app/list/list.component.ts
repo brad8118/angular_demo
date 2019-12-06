@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { HttpService } from '../http.service';
+import { AutocompleteFilterComponent} from '../components/autocomplete-filter/autocomplete-filter.component'
 
 
 @Component({
@@ -12,14 +13,19 @@ import { HttpService } from '../http.service';
   styleUrls: ['./list.component.css']
 })
 
+@NgModule({
+  imports:[AutocompleteFilterComponent],
+  exports:[AutocompleteFilterComponent]
+})
+
 export class ListComponent implements OnInit {
 
   brews: Object;
 
   constructor(private _http: HttpService) { }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
  
   displayedColumns: string[];
