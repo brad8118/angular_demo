@@ -102,16 +102,15 @@ export class AutocompleteFilterComponent implements OnInit {
 
   displayFn(value: User[] | string): string | undefined {
     let displayValue: string;
-    if (Array.isArray(value)) {
-      value.forEach((user, index) => {
-        if (index === 0) {
-          displayValue = user.firstname + ' ' + user.lastname;
-        } else {
-          displayValue += ', ' + user.firstname + ' ' + user.lastname;
-        }
-      });
+    if (Array.isArray(value) && value.length > 0) {
+      displayValue = value[0].firstname + ' ' + value[0].lastname;
+      if (value.length == 1) {
+        displayValue += " (1 other)";
+      } else if (value.length > 1) {
+        displayValue += " (" + value.length + " others)";
+      }
     } else {
-      displayValue = value;
+      displayValue = '';
     }
     return displayValue;
   }
