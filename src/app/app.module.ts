@@ -14,12 +14,14 @@ import { AngularMaterialModule } from './angular-material.module';
 
 // Bug with mat-label
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    AutocompleteFilterComponent
   ],
   imports: [
     BrowserModule,
