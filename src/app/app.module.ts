@@ -15,13 +15,15 @@ import { AngularMaterialModule } from './angular-material.module';
 // Bug with mat-label
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
+import { AutocompleteChipsComponent } from './components/autocomplete-chips/autocomplete-chips.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListComponent,
-    AutocompleteFilterComponent
+    AutocompleteFilterComponent,
+    AutocompleteChipsComponent
   ],
   imports: [
     BrowserModule,
