@@ -1,0 +1,142 @@
+
+<app-autocomplete-filter>Loading</app-autocomplete-filter>
+<app-autocomplete-chips>Loading</app-autocomplete-chips>
+
+
+<!-- columns select -->
+<mat-form-field>
+  <mat-select placeholder="Columns" [formControl]="columns" [(ngModel)]="displayedColumns"
+    [compareWith]="compareWithFunc" multiple>
+    <mat-select-trigger><span>Columns</span></mat-select-trigger>
+    <mat-option *ngFor="let column of columnList" [value]="column">{{column}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>
+  {{displayedColumns | json}}
+</p>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="requestId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> RequestId </th>
+    <td mat-cell *matCellDef="let element"> {{element.requestId}} </td>
+  </ng-container>
+
+  <!-- brewery_type Column -->
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+
+  <!-- city Column -->
+  <ng-container matColumnDef="service">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+    <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="clusterNodes">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ClusterNodes </th>
+    <td mat-cell *matCellDef="let element"> {{element.clusterNodes}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="clusterType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cluster Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.clusterType}} </td>
+  </ng-container>
+
+  <!-- city Column -->
+  <ng-container matColumnDef="disks">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Disks </th>
+    <td mat-cell *matCellDef="let element"> {{element.disks}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="tags">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
+    <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="cpu">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cpu </th>
+    <td mat-cell *matCellDef="let element"> {{element.cpu}} </td>
+  </ng-container>
+
+  <!-- city Column -->
+  <ng-container matColumnDef="memGB">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> MemGB </th>
+    <td mat-cell *matCellDef="let element"> {{element.memGB}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="osimage">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Os Image </th>
+    <td mat-cell *matCellDef="let element"> {{element.osimage}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="ucmbags">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ucmbags </th>
+    <td mat-cell *matCellDef="let element"> {{element.ucmbags}} </td>
+  </ng-container>
+
+  <!-- city Column -->
+  <ng-container matColumnDef="placementID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Placement ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.placementID}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="placementPayload">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Placement Payload </th>
+    <td mat-cell *matCellDef="let element"> {{element.placementPayload}} </td>
+  </ng-container>
+
+  <!-- city Column -->
+  <ng-container matColumnDef="createDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> createDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.createDate}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="modifiedDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.modifiedDate}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="message">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Message </th>
+    <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+  </ng-container>
+
+  <!-- country Column -->
+  <ng-container matColumnDef="correlationID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Correlation ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.correlationID}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Angular 8 pagination -->
+<mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>

@@ -15,7 +15,11 @@
 </mat-form-field>
 
 <p>
-  {{displayedColumns | json}}
+    displayedColumns: {{displayedColumns | json}}
+</p> 
+
+<p>
+    columnList: {{columnList | json}}
 </p> 
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">

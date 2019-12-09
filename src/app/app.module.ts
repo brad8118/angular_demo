@@ -16,6 +16,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
 import { AutocompleteChipsComponent } from './components/autocomplete-chips/autocomplete-chips.component';
+import { VmListComponent } from './components/vm-list/vm-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AutocompleteChipsComponent } from './components/autocomplete-chips/auto
     HomeComponent,
     ListComponent,
     AutocompleteFilterComponent,
-    AutocompleteChipsComponent
+    AutocompleteChipsComponent,
+    VmListComponent
   ],
   imports: [
     BrowserModule,
