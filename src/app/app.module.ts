@@ -17,6 +17,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
 import { AutocompleteChipsComponent } from './components/autocomplete-chips/autocomplete-chips.component';
 import { VmListComponent } from './components/vm-list/vm-list.component';
+import { VmGridComponent } from './components/vm-grid/vm-grid.component';
+
+import { AgGridModule } from 'ag-grid-angular';
+// import { List2Module } from './list2/list2.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { VmListComponent } from './components/vm-list/vm-list.component';
     ListComponent,
     AutocompleteFilterComponent,
     AutocompleteChipsComponent,
-    VmListComponent
+    VmListComponent,
+    VmGridComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,12 @@ import { VmListComponent } from './components/vm-list/vm-list.component';
     HttpClientModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgGridModule.withComponents([])
+  ],
+  entryComponents:[
+    // List2Module,
+    VmGridComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
