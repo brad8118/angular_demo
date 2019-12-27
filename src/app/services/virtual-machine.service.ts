@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { VirtualMachine, vmStatus, ServiceType, OsImageType } from './virtual-machine.model';
 import { VmListComponent } from '../components/vm-list/vm-list.component';
@@ -14,26 +14,29 @@ export class VirtualMachineService {
 
   public getVMList(): any {
     const vmListObservable = new Observable(observer => {
-        setTimeout(() => {
-            observer.next({data: this.generateRandomVMs(30)});
-        }, 1000);
+      setTimeout(() => {
+        observer.next({ data: this.generateRandomVMs(30) });
+      }, 1000);
     });
 
     return vmListObservable;
-}
+  }
 
+  public getVmListAsList(){
+    return this.generateRandomVMs(30);
+  }
 
   private generateRandomVMs(numberOfVMs: number) {
-    let vmList: VirtualMachine [] = []
-  
+    let vmList: VirtualMachine[] = []
+
     for (let i = 0; i < numberOfVMs; i++) {
-  
+
       const randomStatus: string = vmStatus[this.randomEnum(vmStatus)];
       const randomOS: string = OsImageType[this.randomEnum(OsImageType)];
       const randomService: string = ServiceType[this.randomEnum(ServiceType)];
-  
-  
-      vmList.push(new VirtualMachine (
+
+
+      vmList.push(new VirtualMachine(
         "5e7ca2a0-a912-450a-b058-f13073be4aa5", //requestId
         randomStatus, //status
         randomService, //service
@@ -59,10 +62,10 @@ export class VirtualMachineService {
         "5e7ca2a0-a912-450a-b058-f13073be4aa5", //correlationID: string;
       ))
     }
-  
+
     return vmList;
   }
-  
+
   // randomly pick one of the enum values
   private randomEnum<T>(anEnum: T): T[keyof T] {
     const enumValues = Object.keys(anEnum)

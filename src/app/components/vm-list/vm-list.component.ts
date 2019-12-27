@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { VirtualMachine } from '../../services/virtual-machine.model'
-import { VirtualMachineService } from '../../services/virtual-machine.service'
+import { VirtualMachine } from '../../services/virtual-machine.model';
+import { VirtualMachineService } from '../../services/virtual-machine.service';
 
 
 @Component({

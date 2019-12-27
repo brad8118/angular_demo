@@ -2,12 +2,19 @@
 
 <button (click)="getSelectedRows()">Get Selected Rows</button>
 
-<ag-grid-angular
-    #agGrid
-    style="width: 500px; height: 500px;"
-    class="ag-theme-balham"
-    [rowData]="rowData | async"
-    [columnDefs]="columnDefs"
-    rowSelection="multiple"
-    >
+<!-- columns select -->
+<mat-form-field>
+  <mat-select placeholder="Columns" [formControl]="columnsDDctl" [(ngModel)]="displayedColumns" 
+  [compareWith]="compareWithColumns" (onSelectionChange)="columnChanged($event)" multiple>
+    <mat-select-trigger><span>Columns</span></mat-select-trigger>
+    <mat-option *ngFor="let column of allColumns" [value]="column">{{column.headerName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ag-grid-angular #agGrid style="width: 1000px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
+  [columnDefs]="allColumns" rowSelection="multiple" [defaultColDef]="defaultColDef">
+</ag-grid-angular>
+
+<ag-grid-angular #agGrid_2 style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData_2 | async"
+  [columnDefs]="columnDefs" rowSelection="multiple" [defaultColDef]="defaultColDef">
 </ag-grid-angular>
