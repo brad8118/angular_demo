@@ -21,7 +21,7 @@ export class VmGridComponent implements OnInit {
 
   private defaultColDef;
 
-  constructor(private http: HttpClient, private _http: VirtualMachineService) {
+  constructor(private http: HttpClient, private _http: VirtualMachineService ) {
 
     this.defaultColDef = { filter: true };
   }
@@ -54,7 +54,13 @@ export class VmGridComponent implements OnInit {
   // Generate columns with configurations for the columns
   createColumnDefs() {
     let columns = [
-      this.columnDefTemplate('Request Id', 'requestId', { checkboxSelection: true, pinned: 'left' }),
+      this.columnDefTemplate('Request Id', 'requestId', {
+        checkboxSelection: true, pinned: 'left',
+        disabledInColumnSelector: true, rowDrag: false,
+        cellRenderer: (params) =>
+          `<a href="/vm/${params.data.requestId}" >${params.data.requestId}</a>`
+      },
+      ),
       this.columnDefTemplate('Status', 'status'),
       this.columnDefTemplate('Service', 'service'),
       this.columnDefTemplate('Cluster Nodes', 'clusterNodes'),
@@ -85,6 +91,7 @@ export class VmGridComponent implements OnInit {
     columnConfig['checkboxSelection'] = false;
     columnConfig['filter'] = true;
     columnConfig['resizable'] = true;
+    columnConfig['disabled'] = false;
 
     // apply over-rides 
     for (let k in overRides) {

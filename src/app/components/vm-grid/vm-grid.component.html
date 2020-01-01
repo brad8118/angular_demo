@@ -1,17 +1,18 @@
-<p>vm-grid works!</p>
 
 <button (click)="getSelectedRows()">Get Selected Rows</button>
 
 <!-- columns select -->
 <mat-form-field>
-  <mat-select placeholder="Columns" [formControl]="columnsDDctl" [(ngModel)]="displayedColumns"
+  <mat-select placeholder="" [formControl]="columnsDDctl" [(ngModel)]="displayedColumns"
     [compareWith]="compareWithColumns" multiple>
-    <mat-select-trigger><span>Columns</span></mat-select-trigger>
-    <mat-option *ngFor="let column of allColumns" [value]="column" (onSelectionChange)="onSelectionChange($event)">
+    <mat-select-trigger><span>Show/Hide Columns</span></mat-select-trigger>
+    <mat-option *ngFor="let column of allColumns" [value]="column" (onSelectionChange)="onSelectionChange($event)"
+      [disabled]="column.disabledInColumnSelector">
       {{column.headerName}}</mat-option>
   </mat-select>
 </mat-form-field>
 
 <ag-grid-angular #agGrid style="width: 1000px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
-  [columnDefs]="allColumns" rowSelection="multiple" [sideBar]='sideBar' [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)">
+  [columnDefs]="allColumns" rowSelection="multiple" [sideBar]='sideBar' [defaultColDef]="defaultColDef"
+  (gridReady)="onGridReady($event)">
 </ag-grid-angular>

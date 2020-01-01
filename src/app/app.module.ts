@@ -20,6 +20,7 @@ import { VmListComponent } from './components/vm-list/vm-list.component';
 import { VmGridComponent } from './components/vm-grid/vm-grid.component';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { VmDetailsComponent } from './components/vm-details/vm-details.component';
 // import { List2Module } from './list2/list2.module';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AgGridModule } from 'ag-grid-angular';
     AutocompleteChipsComponent,
     VmListComponent,
     VmGridComponent,
+    VmDetailsComponent,
   ],
   imports: [
     BrowserModule,
