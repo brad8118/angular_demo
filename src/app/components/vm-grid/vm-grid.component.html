@@ -1,4 +1,3 @@
-
 <button (click)="getSelectedRows()">Get Selected Rows</button>
 
 <!-- columns select -->
@@ -14,5 +13,5 @@
 
 <ag-grid-angular #agGrid style="width: 1000px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
   [columnDefs]="allColumns" rowSelection="multiple" [sideBar]='sideBar' [defaultColDef]="defaultColDef"
-  (gridReady)="onGridReady($event)">
+  (gridReady)="onGridReady($event)" [rowMultiSelectWithClick]="true">
 </ag-grid-angular>

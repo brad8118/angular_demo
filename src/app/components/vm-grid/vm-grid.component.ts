@@ -55,6 +55,7 @@ export class VmGridComponent implements OnInit {
   createColumnDefs() {
     let columns = [
       this.columnDefTemplate('Request Id', 'requestId', {
+        headerCheckboxSelection: true,
         checkboxSelection: true, pinned: 'left',
         disabledInColumnSelector: true, rowDrag: false,
         cellRenderer: (params) =>
